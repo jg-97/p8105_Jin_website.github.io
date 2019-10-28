@@ -1,0 +1,66 @@
+---
+title: "plotly_restaurant"
+output: 
+  github_document:
+    code_folding: hide
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE,
+                      fig.height = 6,
+                      fig.width = 8)
+
+library(tidyverse)
+library(plotly)
+library(p8105.datasets)
+```
+
+
+```{r open_data}
+data("rest_inspec")
+```
+
+
+```{r data_frame}
+res_insp <- rest_inspec %>% 
+  janitor::clean_names() %>% 
+  drop_na()
+```
+
+
+```{r plotly1}
+res_insp %>% 
+  filter(grade %in% c("A", "B", "C"),
+         cuisine_description == "American") %>% 
+  mutate(text_label =  str_c("Cuisine type: ", cuisine_description)) %>% 
+  group_by(boro, grade, text_label) %>% 
+  summarise(count = n()) %>% 
+  plot_ly(x = ~boro, y = ~count, color = ~grade, text = ~text_label, type = "bar")
+```
+
+
+```{r plotly2}
+res_insp %>% 
+  filter(boro == "MANHATTAN") %>% 
+  separate(inspection_date, c("year", "month", "day"),sep = "-") %>% 
+  select(boro, year, score) %>% 
+  mutate(text_label = str_c("Borough: ", boro)) %>% 
+  plot_ly(y = ~score, color = ~year, text = ~text_label, type = "box",
+          colors = "Set2")
+```
+
+
+```{r plotly3}
+res_insp %>% 
+  filter(boro == "MANHATTAN") %>% 
+  group_by(inspection_date) %>% 
+  summarise(count = n()) %>% 
+  select(inspection_date, count) %>%
+  plot_ly(x = ~inspection_date, y = ~count, type = "scatter", mode = "lines",
+          fill = "tozeroy")
+
+```
+

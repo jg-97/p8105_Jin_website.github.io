@@ -1,0 +1,22 @@
+name: "My awesome website"
+output_dir: "."
+navbar:
+  title: "Home"
+  left:
+    - text: "About"
+      href: about.html
+    - text: Examples
+      menu:
+      - text: "Plotly"
+        href: plotly.html
+      - text: "Dashboard"
+        href: dashboard.html
+    - icon: fa-envelope fa-lg
+      href: mailto:<jg4197@cumc.columbia.edu>
+    - icon: fa-github fa-lg
+      href: https://github.com/jg-97
+    - icon: fa-facebook fa-lg
+    - href: https://www.facebook.com/jin.ge.79827/
+output:
+  html_document:
+   theme: journal

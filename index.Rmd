@@ -1,0 +1,17 @@
+---
+title: "Introducing myself"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+# This is Jin's website 
+
+Welcome to my website. You can learn more [about me](about.html) here. In addition, contacting methods are also available. Hope to chat with you.
+
+
+
+
+
