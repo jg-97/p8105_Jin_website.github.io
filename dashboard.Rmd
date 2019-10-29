@@ -8,16 +8,15 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
-library(tidyverse)
-library(p8105.datasets)
-library(plotly)
-
 knitr::opts_chunk$set(warning = FALSE,
                       message = FALSE,
                       fig.height = 6,
                       fig.width = 8)
-```
 
+library(tidyverse)
+library(plotly)
+library(p8105.datasets)
+```
 
 
 ```{r}
@@ -26,31 +25,12 @@ data("rest_inspec")
 res_insp <- rest_inspec %>% 
   janitor::clean_names() %>% 
   drop_na()
-
-
 ```
-
 
 Column {data-width=650}
 -----------------------------------------------------------------------
 
 ### Chart A
-
-```{r}
-res_insp %>% 
-  filter(grade %in% c("A", "B", "C"),
-         cuisine_description == "American") %>% 
-  mutate(text_label =  str_c("Cuisine type: ", cuisine_description)) %>% 
-  group_by(boro, grade, text_label) %>% 
-  summarise(count = n()) %>% 
-  plot_ly(x = ~boro, y = ~count, color = ~grade, text = ~text_label, type = "bar")
-
-```
-
-Column {data-width=350}
------------------------------------------------------------------------
-
-### Chart B
 
 ```{r}
 res_insp %>% 
@@ -60,7 +40,21 @@ res_insp %>%
   mutate(text_label = str_c("Borough: ", boro)) %>% 
   plot_ly(y = ~score, color = ~year, text = ~text_label, type = "box",
           colors = "Set2")
+```
 
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+res_insp %>% 
+  filter(grade %in% c("A", "B", "C"),
+         cuisine_description == "American") %>% 
+  mutate(text_label =  str_c("Cuisine type: ", cuisine_description)) %>% 
+  group_by(boro, grade, text_label) %>% 
+  summarise(count = n()) %>% 
+  plot_ly(x = ~boro, y = ~count, color = ~grade, text = ~text_label, type = "bar")
 ```
 
 ### Chart C
@@ -74,3 +68,4 @@ res_insp %>%
   plot_ly(x = ~inspection_date, y = ~count, type = "scatter", mode = "lines",
           fill = "tozeroy")
 ```
+

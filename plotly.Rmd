@@ -1,37 +1,32 @@
 ---
 title: "plotly_restaurant"
 output: 
-  github_document:
+  html_document:
     code_folding: hide
     toc: true
     toc_float: true
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(warning = FALSE,
-                      message = FALSE,
-                      fig.height = 6,
-                      fig.width = 8)
-
+```{r, message=FALSE}
 library(tidyverse)
 library(plotly)
 library(p8105.datasets)
 ```
 
 
-```{r open_data}
+```{r}
 data("rest_inspec")
 ```
 
 
-```{r data_frame}
+```{r}
 res_insp <- rest_inspec %>% 
   janitor::clean_names() %>% 
   drop_na()
 ```
 
 
-```{r plotly1}
+```{r}
 res_insp %>% 
   filter(grade %in% c("A", "B", "C"),
          cuisine_description == "American") %>% 
@@ -42,7 +37,7 @@ res_insp %>%
 ```
 
 
-```{r plotly2}
+```{r}
 res_insp %>% 
   filter(boro == "MANHATTAN") %>% 
   separate(inspection_date, c("year", "month", "day"),sep = "-") %>% 
@@ -53,7 +48,7 @@ res_insp %>%
 ```
 
 
-```{r plotly3}
+```{r}
 res_insp %>% 
   filter(boro == "MANHATTAN") %>% 
   group_by(inspection_date) %>% 

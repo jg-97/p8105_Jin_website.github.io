@@ -16,7 +16,7 @@ navbar:
     - icon: fa-github fa-lg
       href: https://github.com/jg-97
     - icon: fa-facebook fa-lg
-    - href: https://www.facebook.com/jin.ge.79827/
+    - href: https://www.facebook.com/jin.ge.79827
 output:
   html_document:
    theme: journal
