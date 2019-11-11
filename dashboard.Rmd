@@ -30,7 +30,7 @@ res_insp <- rest_inspec %>%
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Chart A
+### Restaurant score of Manhattan
 
 ```{r}
 res_insp %>% 
@@ -45,7 +45,7 @@ res_insp %>%
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Chart B
+### Number of American food offered in each borough
 
 ```{r}
 res_insp %>% 
@@ -57,7 +57,7 @@ res_insp %>%
   plot_ly(x = ~boro, y = ~count, color = ~grade, text = ~text_label, type = "bar")
 ```
 
-### Chart C
+### Number of each nspection date across years
 
 ```{r}
 res_insp %>% 
